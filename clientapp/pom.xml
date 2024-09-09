@@ -99,10 +99,18 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
+                 <executions>
+                <execution>
+                    <goals>
+                        <goal>repackage</goal>
+                    </goals>
+                    <configuration>
                     <mainClass>com.bank.clientapp.ClientappApplication</mainClass> 
                 </configuration>
+                </execution>
+                </executions>
             </plugin>
+            
         </plugins>
     </build>
 </project>

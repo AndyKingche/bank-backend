@@ -1,6 +1,7 @@
 package com.bank.accountapp.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -40,6 +41,6 @@ public class TransactionsModel implements Serializable{
     private Float balance;
 
     @Column(name = "datetransfer")
-    private Date datetransfer;
+    private LocalDate datetransfer;
 
 }

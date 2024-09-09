@@ -1,5 +1,6 @@
 package com.bank.accountapp.service.impl;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -9,10 +10,12 @@ import javax.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bank.accountapp.DTO.ReportDTO;
 import com.bank.accountapp.DTO.TransactionsDTO;
 import com.bank.accountapp.mapper.TransactionsMapper;
 import com.bank.accountapp.model.AccountModel;
 import com.bank.accountapp.model.TransactionsModel;
+import com.bank.accountapp.repository.AccountRepository;
 import com.bank.accountapp.repository.TransactionsRepository;
 import com.bank.accountapp.service.AccountService;
 import com.bank.accountapp.service.TransactionsService;
@@ -25,6 +28,9 @@ public class TransactionsServiceImpl implements TransactionsService{
 
     @Autowired
     private AccountService accountService;
+
+    @Autowired
+    private AccountRepository accountRepository;
 
     @Override
     public List<TransactionsModel> listTransactions() {
@@ -132,7 +138,7 @@ public class TransactionsServiceImpl implements TransactionsService{
                         float result = accountExists.get().getBalance() + (transfer.getValuetransfer());
     
                         transfer.setBalance(result);
-                        transfer.setDatetransfer(new Date());
+                        transfer.setDatetransfer(LocalDate.now());
         
                         accountExists.get().setBalance(result);
         
@@ -152,7 +158,7 @@ public class TransactionsServiceImpl implements TransactionsService{
                         float result = accountExists.get().getBalance() - (transfer.getValuetransfer() *(-1));
     
                         transfer.setBalance(result);
-                        transfer.setDatetransfer(new Date());
+                        transfer.setDatetransfer(LocalDate.now());
         
                         accountExists.get().setBalance(result);
         
@@ -179,6 +185,22 @@ public class TransactionsServiceImpl implements TransactionsService{
            catch (Exception e) {
             throw new RuntimeException("Error processing create transactions request: "+ e);
            }
+    }
+
+    @Override
+    public ReportDTO reportTransactions(LocalDate fechaInicio, LocalDate fechaFin, Integer clientId) {
+
+        List<AccountModel> account = accountRepository.findByPersonid(clientId);
+
+        List<TransactionsModel> transfer = transactionsRepository.findByAccountInAndDatetransferBetween(account, fechaInicio, fechaFin);
+
+        ReportDTO report = new ReportDTO();
+
+        report.setAccount(account);
+        report.setTransactions(transfer);
+
+        return report;
+     
     }
 
 }

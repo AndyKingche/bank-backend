@@ -1,8 +1,10 @@
 package com.bank.accountapp.controller;
 
+import java.time.LocalDate;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -13,8 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bank.accountapp.DTO.ReportDTO;
 import com.bank.accountapp.DTO.TransactionsDTO;
 import com.bank.accountapp.messages.MessagesDTO;
 import com.bank.accountapp.model.TransactionsModel;
@@ -210,5 +214,18 @@ public class TransactionsController {
         }
 
      }
+
+    @GetMapping("reports")
+    public ResponseEntity<ReportDTO> generarReporte(
+            @RequestParam("fechaInicio") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fechaInicio,
+            @RequestParam("fechaFin") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fechaFin,
+            @RequestParam("clienteId") Integer clienteId) {
+        
+        
+        ReportDTO reporte = transactionsService.reportTransactions(fechaInicio, fechaFin, clienteId);
+
+    
+        return ResponseEntity.ok(reporte);
+    }
      
 }

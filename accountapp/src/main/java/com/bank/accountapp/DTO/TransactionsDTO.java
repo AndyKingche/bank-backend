@@ -1,6 +1,7 @@
 package com.bank.accountapp.DTO;
 
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import lombok.Data;
@@ -13,6 +14,6 @@ public class TransactionsDTO {
     private String typetransfer;
     private Float valuetransfer;
     private Float balance;
-    private Date datetransfer;
+    private LocalDate datetransfer;
     
 }
