@@ -103,6 +103,46 @@ public class TransactionsController {
         }
  
      }
+
+     @PostMapping("dotransfer")
+     public ResponseEntity<MessagesDTO> doTransfer(@RequestBody TransactionsDTO transfer){
+ 
+        try {
+            
+          
+           TransactionsModel createdTransfer = transactionsService.doTransactions(transfer);
+ 
+            MessagesDTO menssagedto = new MessagesDTO();
+ 
+            menssagedto.setMessage("Transactions created with ID "+ createdTransfer.getId());
+            menssagedto.setMethod("POST");
+            menssagedto.setStatus(true);
+ 
+            return new ResponseEntity<>(menssagedto, HttpStatus.CREATED);
+            
+        } catch(IllegalArgumentException e){
+ 
+            MessagesDTO badMessagedto = new MessagesDTO();
+ 
+            badMessagedto.setMessage("Invalid input: " + e.getMessage());
+            badMessagedto.setMethod("POST");
+            badMessagedto.setStatus(false);
+ 
+            return new ResponseEntity<>(badMessagedto, HttpStatus.INTERNAL_SERVER_ERROR);
+        } 
+        catch (Exception e) {
+ 
+            MessagesDTO badMessagedto = new MessagesDTO();
+ 
+            badMessagedto.setMessage("Error" + e.getMessage());
+            badMessagedto.setMethod("POST");
+            badMessagedto.setStatus(false);
+ 
+            return new ResponseEntity<>(badMessagedto, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+ 
+     }
+
  
      @PutMapping("transfer-edit/{id}")
      public ResponseEntity<MessagesDTO> updateTransfer(@PathVariable("id") Long id, @RequestBody TransactionsDTO transfer) {

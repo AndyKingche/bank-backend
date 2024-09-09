@@ -8,7 +8,6 @@ import javax.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bank.accountapp.DTO.AccountDTO;
 import com.bank.accountapp.model.AccountModel;
 import com.bank.accountapp.repository.AccountRepository;
 import com.bank.accountapp.service.AccountService;
@@ -71,5 +70,6 @@ public class AccountServiceImpl implements AccountService{
             return true;
         }).orElseThrow(() -> new EntityNotFoundException("Account not found with ID: " + id));
     }
+
 
 }

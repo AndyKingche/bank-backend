@@ -112,4 +112,70 @@ public class TransactionsServiceImpl implements TransactionsService{
 
     }
 
+    @Override
+    public TransactionsModel doTransactions(TransactionsDTO transactionsDTO) {
+        try {
+
+            TransactionsModel transfer = TransactionsMapper.INSTANCE.transactionsDTOToTransactionsModel(transactionsDTO);
+    
+            Optional<AccountModel> accountExists = accountService.accountId(transfer.getAccount().getId());
+
+            System.out.println(accountExists.get().getId());
+    
+            if(!accountExists.isEmpty()){
+
+                if(transfer.getValuetransfer() > 0){
+
+                    if(accountExists.get().getBalance() >= transfer.getValuetransfer()){
+
+                        float result = accountExists.get().getBalance() + (transfer.getValuetransfer());
+    
+                        transfer.setBalance(result);
+        
+                        accountExists.get().setBalance(result);
+        
+                        accountService.updateAccount(transfer.getAccount().getId(), accountExists.get());
+            
+                        return transactionsRepository.save(transfer);
+                    }else{
+                        throw new IllegalArgumentException("Invalid value of transfer: " + transfer.getValuetransfer());
+                    }
+
+                }
+                else if(transfer.getValuetransfer() < 0){
+
+  
+                    if(accountExists.get().getBalance() >= (transfer.getValuetransfer() * -1)){
+
+                        float result = accountExists.get().getBalance() - (transfer.getValuetransfer() *(-1));
+    
+                        transfer.setBalance(result);
+        
+                        accountExists.get().setBalance(result);
+        
+                        accountService.updateAccount(transfer.getAccount().getId(), accountExists.get());
+            
+                        return transactionsRepository.save(transfer);
+                    }else{
+                        throw new IllegalArgumentException("Invalid value of transfer: " + transfer.getValuetransfer());
+                    }
+
+
+                }
+                else {
+                    throw new IllegalArgumentException("Invalid value of transfer: " + transfer.getValuetransfer());
+                }   
+
+            }
+            else{
+    
+                throw new IllegalArgumentException("The account with the id does not exist "+transfer.getAccount().getId());
+            }
+    
+           }
+           catch (Exception e) {
+            throw new RuntimeException("Error processing create transactions request: "+ e);
+           }
+    }
+
 }
