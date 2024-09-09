@@ -1,5 +1,6 @@
 package com.bank.accountapp.service.impl;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -131,6 +132,7 @@ public class TransactionsServiceImpl implements TransactionsService{
                         float result = accountExists.get().getBalance() + (transfer.getValuetransfer());
     
                         transfer.setBalance(result);
+                        transfer.setDatetransfer(new Date());
         
                         accountExists.get().setBalance(result);
         
@@ -150,6 +152,7 @@ public class TransactionsServiceImpl implements TransactionsService{
                         float result = accountExists.get().getBalance() - (transfer.getValuetransfer() *(-1));
     
                         transfer.setBalance(result);
+                        transfer.setDatetransfer(new Date());
         
                         accountExists.get().setBalance(result);
         
