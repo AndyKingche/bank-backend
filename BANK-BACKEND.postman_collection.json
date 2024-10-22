@@ -1,0 +1,603 @@
+{
+	"info": {
+		"_postman_id": "62bfd159-efc4-4eaa-89c5-711c33750835",
+		"name": "BANK-BACKEND",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8149818",
+		"_collection_link": "https://izenshy.postman.co/workspace/IZENSHY-Workspace~a47da5c5-dfef-40e5-933d-8838bc9be678/collection/8149818-62bfd159-efc4-4eaa-89c5-711c33750835?action=share&source=collection_link&creator=8149818"
+	},
+	"item": [
+		{
+			"name": "accountapp",
+			"item": [
+				{
+					"name": "movimientos/list-transfer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8085/api/movimientos/list-transfer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"movimientos",
+								"list-transfer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "movimientos/transfer/{id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8085/api/movimientos/transfer/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"movimientos",
+								"transfer",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "movimientos/create-transfer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"account\" : 1,\r\n    \"typetransfer\" : \"Retiro\",\r\n    \"valuetransfer\": 15,\r\n    \"balance\":285\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8085/api/movimientos/create-transfer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"movimientos",
+								"create-transfer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "movimientos/dotransfer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"account\" : 1,\r\n    \"typetransfer\" : \"Desposito\",\r\n    \"valuetransfer\": 80,\r\n    \"balance\":0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8085/api/movimientos/dotransfer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"movimientos",
+								"dotransfer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reports",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8085/api/movimientos/reports?fechaInicio=2024-09-01&fechaFin=2024-09-09&clienteId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"movimientos",
+								"reports"
+							],
+							"query": [
+								{
+									"key": "fechaInicio",
+									"value": "2024-09-01"
+								},
+								{
+									"key": "fechaFin",
+									"value": "2024-09-09"
+								},
+								{
+									"key": "clienteId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "transfer-edit/{id}",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"account\" : 1,\r\n    \"typetransfer\" : \"Retiro\",\r\n    \"valuetransfer\": 20,\r\n    \"balance\":280\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8085/api/movimientos/transfer-edit/11",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"movimientos",
+								"transfer-edit",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "transfer-delete/{id}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8085/api/movimientos/transfer-delete/15",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"movimientos",
+								"transfer-delete",
+								"15"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cuentas/list-account",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8085/api/cuentas/list-account",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"cuentas",
+								"list-account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cuentas/account/{id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8085/api/cuentas/account/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"cuentas",
+								"account",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cuentas/create-account",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"numberaccount\" : \"789456\",\r\n     \"typeaccount\" : \"Corriente\",\r\n     \"balance\" : 300,\r\n     \"personid\" : 1,\r\n     \"status\":true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8085/api/cuentas/create-account",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"cuentas",
+								"create-account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "account-edit/{id}",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"numberaccount\" : \"789457\",\r\n     \"typeaccount\" : \"Corriente\",\r\n     \"balance\" : 300,\r\n     \"personid\" : 1,\r\n     \"status\":true\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8085/api/cuentas/account-edit/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"cuentas",
+								"account-edit",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "account-delete/{id}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8085/api/cuentas/account-delete/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"cuentas",
+								"account-delete",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "clientapp",
+			"item": [
+				{
+					"name": "list-person",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8084/api/clientapp/list-person",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"api",
+								"clientapp",
+								"list-person"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "person/{id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8084/api/clientapp/person/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"api",
+								"clientapp",
+								"person",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create-person",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"name\":\"Andres Quinche\",\r\n\"gender\": 5,\r\n\"age\": 30,\r\n\"identification\": \"103866173\",\r\n\"address\": \"Av.Quito y Atahualpa\",\r\n\"phone\" : \"0994501275\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8084/api/clientapp/create-person",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"api",
+								"clientapp",
+								"create-person"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "person-edit/{id}",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"name\":\"Gissel Cabascango\",\r\n\"gender\": \"F\",\r\n\"age\": 28,\r\n\"identification\": \"1716247943\",\r\n\"address\": \"Av.Bolivar y Mejia\",\r\n\"phone\" : \"0994501275\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8084/api/clientapp/person-edit/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"api",
+								"clientapp",
+								"person-edit",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "person-delete/{id}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8084/api/clientapp/person-delete/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"api",
+								"clientapp",
+								"person-delete",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list-client",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"123\",\r\n    \"name\": \"Pichincha\",\r\n    \"description\": \"Pichincha estudiantes\",\r\n    \"logo\": \"https://as01.epimg.net/diarioas/imagenes/2021/05/18/actualidad/1621365384_747782_1621365586_noticia_normal_recorte1.jpg\",\r\n    \"date_release\": \"2024-08-22\",\r\n    \"date_revision\": \"2025-08-22\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8084/api/clientapp/clientes/list-client",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"api",
+								"clientapp",
+								"clientes",
+								"list-client"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "client/{id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8084/api/clientapp/client/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"api",
+								"clientapp",
+								"client",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create-client",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"personid\": 2,\r\n    \"password\": \"123456789\",\r\n    \"status\" : true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8084/api/clientapp/create-client",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"api",
+								"clientapp",
+								"create-client"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "client-edit/{id}",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"personid\": 1,\r\n    \"password\": \"12345678910\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8084/api/clientapp/client-edit/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"api",
+								"clientapp",
+								"client-edit",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "client-delete/{id}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8084/api/clientapp/client-delete/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"api",
+								"clientapp",
+								"client-delete",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
