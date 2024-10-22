@@ -36,6 +36,14 @@ public class PersonServiceImpl implements PersonService{
     @Override
     public PersonModel createPerson(PersonModel person) {
 
+
+        System.out.println(person.getIdentification());
+
+        Optional<PersonModel> personexisting = personRepository.findByIdentification(person.getIdentification()); 
+
+        if (personexisting.isPresent()) {
+            throw new IllegalArgumentException("La persona con cédula " + person.getIdentification() + " ya está registrada.");
+        }
         return personRepository.save(person);
     }
 

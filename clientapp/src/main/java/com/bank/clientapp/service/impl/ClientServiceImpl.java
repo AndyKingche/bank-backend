@@ -42,17 +42,26 @@ public class ClientServiceImpl implements ClientService{
     public ClientModel createClient(ClientDTO clientDTO) {
        try {
 
+
+
         ClientModel client = ClientMapper.INSTANCE.clientDTOToClientModel(clientDTO);
 
         Optional<PersonModel> personExists = personService.personId(client.getPersonid().getId());
+        Optional<ClientModel> clientExists = clientrepository.findByPersonid(client.getPersonid());
 
-        if(personExists.isPresent()){
+        if(!clientExists.isPresent()){
+            
+            if(personExists.isPresent()){
+    
+                return clientrepository.save(client);
+            }
+            else{
+    
+                throw new IllegalArgumentException("The person with the id does not exist : " + client.getPersonid().getId());
+            }
 
-            return clientrepository.save(client);
-        }
-        else{
-
-            throw new IllegalArgumentException("The person with the id does not exist : " + client.getPersonid().getId());
+        }else{
+            throw new IllegalArgumentException("La persona ya es un cliente con el ID " + client.getPersonid().getId());
         }
 
        }

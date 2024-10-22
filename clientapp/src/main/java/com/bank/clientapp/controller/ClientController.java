@@ -103,7 +103,8 @@ public class ClientController {
             badMessagedto.setMethod("POST");
             badMessagedto.setStatus(false);
 
-            return new ResponseEntity<>(badMessagedto, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(badMessagedto, HttpStatus.BAD_REQUEST
+            );
         } 
         catch (Exception e) {
 
@@ -247,7 +248,7 @@ public class ClientController {
            badMessagedto.setMethod("POST");
            badMessagedto.setStatus(false);
 
-           return new ResponseEntity<>(badMessagedto, HttpStatus.INTERNAL_SERVER_ERROR);
+           return new ResponseEntity<>(badMessagedto, HttpStatus.BAD_REQUEST);
        } 
        catch (Exception e) {
 
@@ -257,7 +258,7 @@ public class ClientController {
            badMessagedto.setMethod("POST");
            badMessagedto.setStatus(false);
 
-           return new ResponseEntity<>(badMessagedto, HttpStatus.INTERNAL_SERVER_ERROR);
+           return new ResponseEntity<>(badMessagedto, HttpStatus.BAD_REQUEST);
        }
 
     }

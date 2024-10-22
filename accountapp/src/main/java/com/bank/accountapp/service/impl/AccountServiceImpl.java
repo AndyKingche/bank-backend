@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.bank.accountapp.model.AccountModel;
 import com.bank.accountapp.repository.AccountRepository;
 import com.bank.accountapp.service.AccountService;
+import com.bank.accountapp.service.ClientFeignClient;
 
 @Service
 public class AccountServiceImpl implements AccountService{
@@ -20,6 +21,7 @@ public class AccountServiceImpl implements AccountService{
 
     @Override
     public List<AccountModel> listAccount() {
+
 
         return accountRepository.findAll();
     }
@@ -37,7 +39,13 @@ public class AccountServiceImpl implements AccountService{
     @Override
     public AccountModel createAccount(AccountModel account) {
         try {
-            
+        
+            Optional<AccountModel> existingAccount = accountRepository.findByNumberaccount(account.getNumberaccount());
+
+        if (existingAccount.isPresent()) {
+            throw new RuntimeException("La cuenta con el numero " + account.getNumberaccount() + " ya existe");
+        }
+
             return accountRepository.save(account);
 
         } catch (Exception e) {
